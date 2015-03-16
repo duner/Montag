@@ -20,9 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'i3z#1&yfx7vxl@5n3(i&0epar3zjln+(pqrwdz!4p7o387a3sx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -36,6 +35,13 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+
+    # Vendor
+
+
+    # My Apps
+    'montag.books'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,9 +54,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'montag.urls'
+ROOT_URLCONF = 'montag.config.urls'
 
-WSGI_APPLICATION = 'montag.wsgi.application'
+WSGI_APPLICATION = 'montag.config.wsgi.application'
 
 
 # Database
@@ -76,8 +82,20 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Templates
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'tellascope/templates'),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+# Static asset configuration
+# import os
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
