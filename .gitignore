@@ -4,4 +4,10 @@ venv
 *.pyc
 staticfiles
 
+
+# Never Commit All This Crap
+bower_components
+node_modules
+
+# Stores Secret Keys
 config.py
