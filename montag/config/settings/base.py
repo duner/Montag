@@ -29,7 +29,6 @@ INSTALLED_APPS = (
 
     # Vendor
 
-
     # My Apps
     'montag.books'
 )
@@ -48,6 +47,8 @@ ROOT_URLCONF = 'montag.config.urls'
 
 WSGI_APPLICATION = 'montag.config.wsgi.application'
 
+DATABASES = {}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
@@ -63,7 +64,7 @@ USE_TZ = True
 
 # Templates
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'tellascope/templates'),
+    os.path.join(BASE_DIR, 'montag/templates'),
 )
 
 # Static files (CSS, JavaScript, Images)
