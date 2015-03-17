@@ -4,6 +4,7 @@ venv
 *.pyc
 staticfiles
 
+.sass-cache/
 
 # Never Commit All This Crap
 bower_components

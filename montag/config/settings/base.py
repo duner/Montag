@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Vendor
+    'compressor',
 
     # My Apps
     'montag.books'
@@ -75,6 +76,13 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'montag/static'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
