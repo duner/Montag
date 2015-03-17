@@ -41,9 +41,6 @@ module.exports = function(grunt) {
       js: {
         files: ['<%= paths.js %>/{,*/}*.js'],
         tasks: ['jshint'],
-        options: {
-          livereload: false
-        }
       },
       livereload: {
       	options: {
@@ -60,7 +57,7 @@ module.exports = function(grunt) {
     connect: {
         options: {
             port: 9000,
-            open: true,
+            open: false,
             livereload: 35729,
             // Change this to '0.0.0.0' to access the server from outside
             hostname: 'localhost'
@@ -74,22 +71,11 @@ module.exports = function(grunt) {
                 ]
             }
         },
-        test: {
-            options: {
-                open: false,
-                port: 9001,
-                base: [
-                    '.tmp',
-                    '<%= paths.assets %>',
-                    '<%= paths.templates %>'
-                ]
-            }
-        },
         dist: {
             options: {
                 base: [
-                    '<%%= paths.dist %>',
-                    '<%%= paths.templates %>'
+                    '<%= paths.dist %>',
+                    '<%= paths.templates %>'
                 ],
                 livereload: false
             }
@@ -103,7 +89,8 @@ module.exports = function(grunt) {
           src: [
             '.tmp',
             '<%= paths.dist %>/*',
-            '!<%= paths.dist %>/.git*'
+            '!<%= paths.dist %>/.git*',
+            '!<%= paths.dist %>/bower_components'
           ]
         }]
       },
@@ -252,14 +239,20 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= path.assets %>',
-          dest: '<%= path.dist %>',
+          cwd: '<%= paths.assets %>',
+          dest: '<%= paths.dist %>',
           src: [
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
           ]
+        },{
+					expand: true,
+          dot: true,
+          cwd: '<%= paths.js %>',
+          dest: '<%= paths.dist %>/js',
+          src: ['{,*/}*.js']
         }]
       }
     },
@@ -298,15 +291,18 @@ module.exports = function(grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+    	'copy:dist',
       'connect:livereload',
       'watch'
     ]);
   });
 
   grunt.registerTask('build', [
+  	'clean',
     'wiredep',
-    'sass',
+    'sass:dist',
     'autoprefixer',
+    'copy:dist',
   ]);
 
   grunt.registerTask('default', [
@@ -314,6 +310,7 @@ module.exports = function(grunt) {
     'wiredep',
     'sass:dist',
     'autoprefixer',
+    'copy:dist',
     'watch'
 	]);
 };

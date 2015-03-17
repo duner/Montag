@@ -28,7 +28,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Vendor
-    'grunt',
     'compressor',
 
     # My Apps
