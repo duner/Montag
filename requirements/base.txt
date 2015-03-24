@@ -1,4 +1,4 @@
-Django==1.7.6
+Django==1.8c1
 dj-database-url==0.3.0
 django-compressor==1.4
 gunicorn==19.3.0

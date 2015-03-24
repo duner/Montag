@@ -68,7 +68,8 @@ module.exports = function(grunt) {
                     '.tmp',
                     '<%= paths.assets %>',
                     '<%= paths.templates %>'
-                ]
+                ],
+                livereload: true
             }
         },
         dist: {
